@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page professionnelle de Guillaume JAMES - Professeur des Universités en Mathématiques Appliquées">
+    <title>Guillaume JAMES - Professeur des Universités</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&display=swap');
+        
+        :root {
+            --primary: #0f172a;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .section-title {
+            position: relative;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: #0f172a;
+            bottom: -8px;
+            left: 0;
+        }
+        
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #0f172a;
+            transform: translateY(-1px);
+        }
+        
+        .theme-card {
+            transition: all 0.3s ease;
+        }
+        .theme-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        
+        .cv-content {
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+        .cv-content h3 {
+            font-size: 1.35rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .cv-content ul, .cv-content ol {
+            padding-left: 1.5rem;
+        }
+        .cv-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Numérotation personnalisée [1], [2], ... */
+        .pub-list {
+            counter-reset: pub-counter;
+        }
+        .pub-list > li {
+            counter-increment: pub-counter;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+        .pub-list > li:before {
+            content: "[" counter(pub-counter) "]";
+            position: absolute;
+            left: 0;
+            font-weight: 600;
+            color: #0f172a;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white border-b sticky top-0 z-50 shadow-sm">
+        <div class="max-w-screen-2xl mx-auto px-8 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-x-3">
+                <img src="assets/photo-personnelle.png" alt="Photo de Guillaume JAMES" class="w-9 h-9 rounded-full object-cover border-2 border-slate-200">
+                <div class="font-semibold text-xl tracking-tight">Guillaume JAMES</div>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
+                <a href="#parcours" class="nav-link">Parcours</a>
+                <a href="#recherche" class="nav-link">Recherche</a>
+                <a href="#a-propos" class="nav-link">Publications et Conférences</a>
+                <a href="#enseignement" class="nav-link">Enseignement</a>                
+                <a href="#cv" class="nav-link text-emerald-600 hover:text-emerald-700">CV détaillé</a>
+                <a href="#contact" class="nav-link">Contact</a>
+	        <a href="index-en.html" class="nav-link flex items-center gap-1 text-base hover:text-emerald-600" title="English version">
+                    🇬🇧
+                </a>
+            </div>
+            
+            <button onclick="toggleMobileMenu()" class="md:hidden text-2xl">
+                <i class="fas fa-bars" id="menu-icon"></i>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t px-8 py-6 text-sm font-medium flex flex-col gap-y-4">
+            <a href="#parcours" onclick="toggleMobileMenu()" class="nav-link">Parcours</a>
+            <a href="#recherche" onclick="toggleMobileMenu()" class="nav-link">Recherche</a>
+            <a href="#a-propos" onclick="toggleMobileMenu()" class="nav-link">Publications et Conférences</a>
+            <a href="#enseignement" onclick="toggleMobileMenu()" class="nav-link">Enseignement</a>
+            <a href="#cv" onclick="toggleMobileMenu()" class="nav-link text-emerald-600">CV détaillé</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="nav-link">Contact</a>
+	    <a href="index-en.html" onclick="toggleMobileMenu()" class="nav-link flex items-center gap-1 text-base hover:text-emerald-600" title="English version">
+                🇬🇧 English version
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="accueil" class="relative h-screen flex items-center bg-cover bg-center" 
+            style="background-image: linear-gradient(rgba(15,23,42,0.45), rgba(15,23,42,0.55)), url('assets/banniere.png');">
+        <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-12 gap-12 items-center">
+            <div class="md:col-span-7 text-white">
+                <h1 class="hero-title text-5xl md:text-7xl font-semibold tracking-tighter leading-none mb-4">
+                    Guillaume JAMES
+                </h1>
+                <p class="text-2xl md:text-3xl font-light opacity-90">
+                    Professeur des Universités en Mathématiques Appliquées, Grenoble INP - Ensimag<br>
+                    Laboratoire Jean Kuntzmann (LJK), CNRS UMR 5224
+                </p>
+                <p class="mt-6 max-w-lg text-lg opacity-80">
+                    Spécialiste des systèmes dynamiques non linéaires et de leurs applications en imagerie satellitaire, sciences de l'environnement et mécanique.
+                </p>
+                
+                <div class="mt-10 flex flex-wrap gap-4">
+                    <a href="#cv" 
+                       class="inline-flex items-center gap-x-2 bg-white text-slate-900 hover:bg-emerald-600 hover:text-white px-8 py-4 rounded-2xl font-semibold transition">
+                        <i class="fas fa-download"></i>
+                        Télécharger le CV détaillé (PDF)
+                    </a>
+                    <a href="#contact" 
+                       class="inline-flex items-center gap-x-2 border border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 rounded-2xl font-semibold transition">
+                        Me contacter
+                    </a>
+                </div>
+            </div>
+            
+            <div class="md:col-span-5 flex justify-center md:justify-end">
+                <div class="relative">
+                    <img src="assets/photo-personnelle.png" alt="Photo de Guillaume JAMES" 
+                         class="w-64 md:w-80 h-64 md:h-80 object-cover rounded-3xl shadow-2xl ring-8 ring-white/30">
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white text-sm flex flex-col items-center">
+            <i class="fas fa-chevron-down animate-bounce"></i>
+        </div>
+    </header>
+
+    <!-- PARCOURS -->
+    <section id="parcours" class="bg-white py-20">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <h2 class="section-title text-4xl font-semibold mb-10">Parcours</h2>
+            <div class="space-y-12 max-w-4xl">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-48 font-medium text-slate-500 shrink-0">Depuis 2008</div>
+                    <div class="flex-1">
+                        <div class="font-semibold">Professeur des Universités</div>
+                        <div class="text-slate-600">Grenoble INP - Ensimag • Laboratoire Jean Kuntzmann (LJK), Mathématiques appliquées et Informatique (CNRS UMR 5224)</div>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-48 font-medium text-slate-500 shrink-0">2005</div>
+                    <div class="flex-1">
+                        <div class="font-semibold">Habilitation à Diriger des Recherches en Mathématiques</div>
+                        <div class="text-slate-600">Université Paul Sabatier Toulouse 3</div>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-48 font-medium text-slate-500 shrink-0">2001 – 2008</div>
+                    <div class="flex-1">
+                        <div class="font-semibold">Maître de Conférences</div>
+                        <div class="text-slate-600">INSA de Toulouse • Institut de Mathématiques de Toulouse (CNRS UMR 5219)</div>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-48 font-medium text-slate-500 shrink-0">09/2000-01/2001</div>
+                    <div class="flex-1">
+                        <div class="font-semibold">Chercheur post-doctorant</div>
+                        <div class="text-slate-600">Mathematics Institute, University of Warwick (UK)</div>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-48 font-medium text-slate-500 shrink-0">1999-2000</div>
+                    <div class="flex-1">
+                        <div class="font-semibold">Scientifique du contingent à l'Ecole Polytechnique, Palaiseau</div>
+                        <div class="text-slate-600">Enseignant en travaux pratique de dynamique des fluides</div>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-48 font-medium text-slate-500 shrink-0">1996 – 1999</div>
+                    <div class="flex-1">
+                        <div class="font-semibold">Doctorat de Mathématiques</div>
+                        <div class="text-slate-600">Université de Nice - Sophia-Antipolis • Institut Non Linéaire de Nice (CNRS UMR 6618)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+<!-- RECHERCHE – Amélioration lisibilité des textes -->
+    <section id="recherche" class="bg-white py-20">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <h2 class="section-title text-4xl font-semibold mb-12">Thèmes de recherche</h2>
+            <div class="space-y-16">
+                <!-- Carte 1 -->
+                <div class="grid md:grid-cols-12 gap-10 items-start theme-card bg-slate-50 p-10 rounded-3xl">
+                    <div class="md:col-span-7">
+                        <p class="font-semibold text-xl">– Systèmes dynamiques appliqués à l’environnement :</p>
+                        <p class="theme-description mt-6">détection de la neige humide, des débris d’avalanches et des lacs de montagne par imagerie satellitaire radar et optique, analyse d’images par méthodes itératives non linéaires.</p>
+                    </div>
+                    <div class="md:col-span-5">
+                        <img src="assets/photo-illustration-recherche1.png" alt="Imagerie satellitaire" class="rounded-3xl shadow-xl w-full object-cover">
+                    </div>
+                </div>
+                
+                <!-- Carte 2 -->
+                <div class="grid md:grid-cols-12 gap-10 items-start theme-card bg-slate-50 p-10 rounded-3xl">
+                    <div class="md:col-span-7">
+                        <p class="font-semibold text-xl">– Problèmes non linéaires en Mécanique :</p>
+                        <p class="theme-description mt-6">impacts et ondes dans des milieux granulaires, ondes non linéaires aux interfaces en contact frottant, ondes internes en fluides stratifiés.</p>
+                    </div>
+                    <div class="md:col-span-5">
+                        <img src="assets/granulaire.png" alt="Milieux granulaires" class="rounded-3xl shadow-xl w-full object-cover">
+                    </div>
+                </div>
+                
+                <!-- Carte 3 -->
+                <div class="grid md:grid-cols-12 gap-10 items-start theme-card bg-slate-50 p-10 rounded-3xl">
+                    <div class="md:col-span-7">
+                        <p class="font-semibold text-xl">– Systèmes dynamiques appliqués à la biologie :</p>
+                        <p class="theme-description mt-6">vibrations localisées de l’ADN, ondes ioniques le long des filaments d’actine.</p>
+                    </div>
+                    <div class="md:col-span-5">
+                        <img src="assets/DNA-model.png" alt="Modèle ADN" class="rounded-3xl shadow-xl w-full object-cover">
+                    </div>
+                </div>
+                
+                <!-- Carte 4 -->
+                <div class="grid md:grid-cols-12 gap-10 items-start theme-card bg-slate-50 p-10 rounded-3xl">
+                    <div class="md:col-span-7">
+                        <p class="font-semibold text-xl">– Etude fondamentale des systèmes dynamiques non linéaires en dimension finie et infinie :</p>
+                        <p class="theme-description mt-6">équations différentielles sur réseaux, systèmes avec avance-retard, équations aux dérivées partielles, itérations d’applications. Phénomènes de bifurcation, ondes localisées, systèmes excitables.</p>
+                    </div>
+                    <div class="md:col-span-5">
+                        <img src="assets/photo-illustration-recherche2.png" alt="Systèmes dynamiques" class="rounded-3xl shadow-xl w-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- À PROPOS + CV COURT (texte parfaitement justifié à gauche) -->
+    <section id="a-propos" class="max-w-screen-2xl mx-auto px-8 py-20">
+        
+        <h2 class="section-title text-4xl font-semibold mb-10">Publications et Conférences</h2>
+        <div class="max-w-5xl mx-auto">
+            <div class="cv-content prose prose-slate max-w-none text-left">
+                
+                <h3 class="font-semibold text-2xl text-slate-800 mt-12 mb-4">Articles soumis dans des revues à comité de lecture</h3>
+                <ol class="pub-list mb-12">
+                    <li>S. Kaushik, G. James, F. Karbou et A. Mauss, Dynamical Segmentation for Avalanches (DyNA) using SAR images: Proof of Concept and First Application in the Swiss Alps, soumis à IEEE Transactions on Geoscience and Remote Sensing (2026).</li>
+                    <li>S. Filhol, C. Misset, N. Bontemps, D. Cusicanqui, E. Paquet, M. Dumont, O. Gagliardini, P. Lacroix, S. Gascoin, G. Thirel, J. Brondex, P. Hagenmuller, E. Larose, P. Schoeneich, D. Roy, E. Thibert, N. Eckert, F. de Montety, R. Mainieri, A. Hauet, F. Gottardi, J. Berthet, A. Baratier, F. Liébault, M. Chmiel, G. Piton, G. Chambon, G. James, P. Frey, P. Deline, L. Astrade, C. Vincent, D. Laigle, A. Recking, F. Karbou, A. Mauss, M. Bonnefoy-Demongeot, F. Fontaine, M. Langlais, E. Berthier et A. Blanc, Compound Drivers and Spatial Connectivity led to the Devastating Debris Flood in the Village of La Bérarde, June 2024, French Alps, soumis à Natural Hazards and Earth System Sciences (2026).</li>
+                    <li>F. Karbou, G. James, A. Mauss, P. Verry, B. Demolis, R. Martin, Unlocking lakes in all terrain with Sentinel-1 SAR imagery, soumis à IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing (2026).</li>
+                    <li>C. Turbé, F. Karbou, A. Rabatel, G. James et A. Mauss, Monitoring rain-on-snow events with Sentinel-1 images: case studies in the Pyrenees and the French Alps. En révision pour Geophysical Research Letters (2026).</li>
+                </ol>
+                
+                <h3 class="font-semibold text-2xl text-slate-800 mt-12 mb-4">Articles publiés dans des revues à comité de lecture</h3>
+                <ol class="pub-list mb-12">
+                    <li>M. Herrmann, G. James et K. Matthies, Fronts in dissipative Fermi-Pasta-Ulam-Tsingou chains, SIAM Journal on Mathematical Analysis 57 (2025), 5718-5745.</li>
+                    <li>K. Kilias, G. James, F. Karbou, C. Turbé, A. Mauss et G. Eynard-Bontemps, Snowline Altitude Estimation in Sentinel-1 Satellite Images Using an Extended Chan–Vese Method: Proof of Concept and Prototype of Fusion With Optical Data, IEEE Transactions on Geoscience and Remote Sensing 63 (2025), 1-13.</li>
+                    <li>G. James, F. Karbou, P. Durand, Dynamical System Approach for Wet Snow Retrieval in Mountains Using Sentinel-1 SAR Images, IEEE Transactions on Geoscience and Remote Sensing 62 (2024), 1-10.</li>
+                    <li>E.G. Charalampidis, G. James, J. Cuevas-Maraver, D. Hennig, N.I. Karachalios et P.G. Kevrekidis, Existence, stability and spatio-temporal dynamics of time-quasiperiodic solutions on a finite background in discrete nonlinear Schrödinger models, Wave Motion 128 (2024), 103324.</li>
+                    <li>A. Guiot, F. Karbou, G. James et P. Durand, Insights into segmentation methods applied to remote sensing SAR images for wet snow detection, Geosciences 13, no. 7 (2023), 193.</li>
+                    <li>F. Karbou, G. James, M. Fructus et F. Marti, On the evaluation of the SAR-based Copernicus snow products in the French Alps, Geosciences 12, no. 11 (2022), 420.</li>
+                    <li>A. Chatterjee, G. James et B. Brogliato, Approximate coefficient of restitution for nonlinear viscoelastic contact with external load, Granular Matter 24 (2022), 124.</li>
+                    <li>G. James, Traveling fronts in dissipative granular chains and nonlinear lattices, Nonlinearity 34 (2021), 1758.</li>
+                    <li>G. James, K. Vorotnikov et B. Brogliato, Kuwabara-Kono numerical dissipation: a new method to simulate granular matter, IMA Journal of Applied Mathematics 85 (2020), 27-66.</li>
+                    <li>G. James, Traveling breathers and solitary waves in strongly nonlinear lattices, Phil. Trans. R. Soc. A 376 (2018), 20170138.</li>
+                    <li>J.E. Morales, G. James et A. Tonnelier, Solitary waves in the excitable Burridge-Knopoff model, Wave Motion 76 (2018), 103-121.</li>
+                    <li>J.E. Morales, G. James et A. Tonnelier, Traveling waves in a spring-block chain sliding down a slope, Phys. Rev. E 96, 012227 (2017).</li>
+                    <li>J. Cuevas-Maraver, P. G. Kevrekidis, D. J. Frantzeskakis, N. I. Karachalios, M. Haragus et G. James, Floquet analysis of Kuznetsov–Ma breathers: A path towards spectral stability of rogue waves, Phys. Rev. E 96, 012202 (2017).</li>
+                    <li>L. Liu, G. James, P. Kevrekidis et A. Vainchtein, Strongly nonlinear waves in locally resonant granular chains, Nonlinearity 29 (2016), 3496-3527.</li>
+                    <li>L. Liu, G. James, P. Kevrekidis et A. Vainchtein, Breathers in a locally resonant granular chain with precompression, Physica D 331 (2016), 27-47.</li>
+                    <li>G. James et D. Pelinovsky, Gaussian solitary waves and compactons in Fermi-Pasta-Ulam lattices with Hertzian potentials, Proc. R. Soc. A. 470 (2165), 2014.</li>
+                    <li>B. Bidégaray-Fesquet, E. Dumas et G. James, From Newton’s cradle to the discrete p-Schrödinger equation , SIAM J. Math. Anal. 45 (2013), 3404-3430.</li>
+                    <li>G. James, P.G. Kevrekidis et J. Cuevas, Breathers in oscillator chains with Hertzian interactions, Physica D 251 (2013), 39-59.</li>
+                    <li>G. James, Periodic travelling waves and compactons in granular chains, J. Nonlinear Sci. 22 (2012), 813-848.</li>
+                    <li>G. James et D. Pelinovsky, Breather continuation from infinity in nonlinear oscillator chains, Discrete and Continuous Dynamical Systems A 32 (2012), 1775-1799.</li>
+                    <li>M. Peyrard et G. James, Intrinsic localized modes in nonlinear models inspired by DNA, Nonlinear Theory and its Applications (NOLTA), Vol. 3 (2012), 27-51.</li>
+                    <li>G. James, Nonlinear waves in Newton’s cradle and the discrete p-Schrödinger equation, Math. Models Meth. Appl. Sci. 21 (2011), 2335-2377.</li>
+                    <li>C. Ferreira, G. James et M. Peyrard, Nonlinear lattice models for biopolymers: dynamical coupling to a ionic cloud and application to actin filaments, Discrete and Continuous Dynamical Systems S 4 (2011), 1147-1166.</li>
+                    <li>G. James, A. Levitt et C. Ferreira, Continuation of discrete breathers from infinity in a nonlinear model for DNA breathing, Applicable Analysis 89 (2010), 1447-1465.</li>
+                    <li>M. Peyrard, S. Cuesta-López et G. James, Nonlinear analysis of the dynamics of DNA breathing, Journal of Biological Physics 35 (2009), 73-89.</li>
+                    <li>G. James, B. Sánchez-Rey et J. Cuevas, Breathers in inhomogeneous lattices : an analysis via center manifold reduction, Reviews in Mathematical Physics 21 (2009), 1-59.</li>
+                    <li>J. Cuevas, G. James, P. Kevrekidis et K. Law, Vortex solutions of the discrete Gross-Pitaevskii equation starting from the anti-continuum limit, Physica D 238 (2009), 1422-1431.</li>
+                    <li>G. James, P. Noble et Y. Sire, Continuation of relative periodic orbits in a class of triatomic Hamiltonian systems, Ann. IHP, Analyse non linéaire 26 (2009), 1237-1264.</li>
+                    <li>M. Peyrard, S. Cuesta-López et G. James, Modelling DNA at the mesoscale : a challenge for nonlinear science ?, Nonlinearity 21 (2008), T91-T100.</li>
+                    <li>J. Cuevas, G. James, P. Kevrekidis, B. Malomed et B. Sánchez-Rey, Approximation of solitons in the discrete NLS equation, Journal of Nonlinear Mathematical Physics 15, supplement 3 (2008), 124-136.</li>
+                    <li>G. James et P. Noble, Weak coupling limit and localized oscillations in Euclidean invariant Hamiltonian systems, J. Nonlinear Sci. 18 (2008), p. 433-461.</li>
+                    <li>G. James et M. Kastner, Bifurcations of discrete breathers in a diatomic Fermi-Pasta-Ulam chain, Nonlinearity 20 (2007), p. 631-657.</li>
+                    <li>Y. Sire et G. James, Numerical computation of travelling breathers in Klein-Gordon chains, Physica D 204 (2005), p. 15-40.</li>
+                    <li>G. Iooss et G. James, Localized waves in nonlinear oscillator chains, Chaos 15 (2005), 015113.</li>
+                    <li>G. James et Y. Sire, Travelling breathers with exponentially small tails in a chain of nonlinear oscillators, Commun. Math. Phys. 257 (2005), p. 51-85.</li>
+                    <li>G. James et P. Noble, Breathers on diatomic Fermi-Pasta-Ulam lattices, Physica D 196 (2004), p. 124-171.</li>
+                    <li>B. Sánchez-Rey, G. James, J. Cuevas et J.F.R. Archilla, Bright and dark breathers in Fermi-Pasta-Ulam lattices, Phys. Rev. B 70, 014301 (2004).</li>
+                    <li>Y. Sire et G. James, Travelling breathers in Klein-Gordon chains, C. R. Acad. Sci. Paris, t. 338, Série I (2004) p. 661-666.</li>
+                    <li>G. James, Centre manifold reduction for quasilinear discrete systems, J. Nonlinear Sci., vol. 13, n.1 (2003), p. 27-63.</li>
+                    <li>G. James, Existence of breathers on FPU lattices, C. R. Acad. Sci. Paris, t. 332, Série I (2001), p. 581-586.</li>
+                    <li>G. James, Internal Travelling Waves in the Limit of a Discontinuously Stratified Fluid, Arch. Rational Mech. Anal., vol. 160, n.1 (2001), p. 41-90.</li>
+                    <li>G. James, Réduction à une variété centrale du problème des ondes progressives en fluide continûment stratifié, dans la limite d’une stratification discontinue, C. R. Acad. Sci. Paris, t. 327, Série I (1998), p. 699-704.</li>
+                    <li>G. James, Small amplitude steady internal waves in stratified fluids, Ann. Univ. Ferrara, Sez VII, Sc. Mat., Vol. XLIII (1997), p. 65-119.</li>
+                </ol>
+                
+                <h3 class="font-semibold text-2xl text-slate-800 mt-12 mb-4">Chapitres de livres et ouvrages collectifs (liste partielle depuis 2021)</h3>
+                <ol class="pub-list mb-12">
+                    <li>F. Naaim-Bouvet, L. Astrade, X. Bodin, M. Bonnefoy-Demongeot , N. Bontemps, F. Bourrier, J. Brondex, S. Caroly, M. Chambru, D. Cusicanqui, M. Dumont, N Eckert., A. Escobar, T. Faug, A. Fichot, S. Filhol, O. Gagliardini, S. Garambois, A. Gilbert, A. Guillemot, A. Helmstetter, G. James, F. Karbou, P. Lacroix, D. Laigle, E. Larose, F. Magnin, A. Rabatel, C. Serrano, E. Thibert, C. Vincent, Risques d’origines glaciaire et périglaciaire : Etat des connaissances et perspectives de recherches [Livre Blanc]. Direction Générale de la Prévention des Risques. Ministère de la Transition Ecologique, de la Biodiversité et des Négociations Internationales sur le Climat (2026)</li>
+                    <li>F. Karbou, G. James, P. Durand, et A.M. Atto, Thresholds and distances to better detect wet snow over mountains with Sentinel-1 image time series, dans Change Detection and Image Time Series Analysis 1 (eds A.M. Atto, F. Bovolo and L. Bruzzone), ISTE-WILEY Sciences, Image - Remote Sensing Imagery (2021), <a href="https://doi.org/10.1002/9781119882268.ch5" class="text-emerald-600 underline">https://doi.org/10.1002/9781119882268.ch5</a>.</li>
+                </ol>
+
+                <h3 class="font-semibold text-2xl text-slate-800 mt-12 mb-4">Rapport d’expertise pour la Direction Départementale des Territoires de l’Isère</h3>
+                <p>F. Karbou, G. James, A. Mauss, D. Roy, Suivi par satellites du lac glaciaire de Bonne Pierre, effectué avant et après la crue torrentielle de la Bérarde de juin 2024, dans Rétro-analyse de la crue du torrent des Etançons du 21 juin 2024, A. Blanc, C. Misset, R. Mainieri, B. Llamas, Office national des forêts - Service RTM de l’Isère, 2024, 72 p. [<a href="https://www.onf.fr/vivre-la-foret/+/246e::rapport-de-retro-analyse-de-levenement-de-la-berarde.html" class="text-emerald-600 underline">lien de téléchargement - www.onf.fr</a>]</p>
+
+                <h3 class="font-semibold text-2xl text-slate-800 mt-12 mb-4">Communications dans des conférences internationales (depuis 2022)</h3>
+                
+                <h3>J'ai été orateur invité dans plus d’une trentaine de conférences internationales et donné une quarantaine de séminaires dans des universités en France ou à l’étranger. Mes communications récentes incluent :</h3>
+                
+                <h3>- Communications orales</h3>
+                <ul class="space-y-3 mb-12">
+                    <li>• BIRS-IMAG workshop Dynamics of Coherent Structures in Discrete and Continuum Nonlinear Systems, Université de Grenade, Juin 2025.</li>
+                    <li>• GdR Exploitation et Modélisation des Dynamiques Non Linéaires, INSA de Lyon, Octobre 2024.</li>
+                    <li>• IEEE International Geoscience and Remote Sensing Symposium IGARSS, session Snow, Sea Ice and Permafrost, Athènes, Juillet 2024.</li>
+                    <li>• Workshop Spatial Dynamics and Related Approaches, Institut für Analysis, Dynamik und Modellierung, Universität Stuttgart, Septembre 2022. Overview talk.</li>
+                    <li>• 10th European Nonlinear Dynamics Conference, ENOC 2022, Mini-Symposium on Non-Smooth Dynamics, Lyon, Juillet 2022.</li>
+                    <li>• Hybrid workshop Nonlinear Waves in Discrete and Continuum Systems, Department of Mathematics, University of Pittsburgh, Juin 2022.</li>
+                </ul>
+                
+                <h3>- Communications dans des actes de conférences</h3>
+                <p>M. Lodigiani, F. Karbou, J.-B. Doridant, B. Demolis, M. Nicora, G. James, A. Mauss, V. Bonnetain, S. Gindraux, L. Mondardini, P. Perret et F. Troilo, Remote sensing for glacial lakes detection: a multi-sensor approach for mapping and monitoring lakes in Western Alps, The International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences (2026), XLVIII-M-11-2026. 23-29. 10.5194/isprs-archives-XLVIII-M-11-2026-23-2026. Proceedings of 11th EARSeL WS Land Ice and Snow 2026, 9 – 11 Fev. 2026, Helsinki, Finland.</p>
+                
+                <h3 class="font-semibold text-xl text-slate-800 mt-12 mb-4">Participation à l'organisation de conférences (depuis 2013)</h3>
+                <ul class="space-y-3 mb-12">
+                    <li>• Membre du comité d’organisation de <a href="https://www.siam.org/conferences/cm/conference/nwcs24" class="text-emerald-600 underline">2024 SIAM Conference on Nonlinear Waves and Coherent Structures, Baltimore</a>.</li>
+                    <li>• Chair (avec C. Daraio et A. Vakakis) du Colloquium Euromech 580 Strongly nonlinear dynamics and acoustics of granular metamaterials, Inria Grenoble, 11-13 Juillet 2016, <a href="https://580.euromech.org/" class="text-emerald-600 underline">https://580.euromech.org/</a></li>
+                    <li>• Co-organisateur (avec D. Pelinovsky, Z. Rapti, G. Schneider) du workshop <a href="https://publications.mfo.de/handle/mfo/3377" class="text-emerald-600 underline">Lattice Differential Equations au Mathematisches Forschungsinstitut Oberwolfach</a>, 15-21 Sept. 2013.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h2 class="section-title text-4xl font-semibold mb-10">Encadrement de la recherche, financements</h2>
+        <div class="max-w-5xl mx-auto">
+            <div class="cv-content prose prose-slate max-w-none text-left">
+                
+                <h3 class="font-semibold text-xl text-slate-800 mt-12 mb-4">Encadrement de thèses</h3>
+                <ul class="space-y-3 mb-12">
+                    <li>• J.-E. Morales, 2013-16, Inria et Univ. Grenoble Alpes (co-encadrement A. Tonnelier)</li>
+                    <li>• A. Bensassi, 2009-13, Univ. Joseph Fourier Grenoble (co-encadrement A. Girard)</li>
+                    <li>• S. Martin, 2009-12, Univ. Joseph Fourier Grenoble (co-encadrement A. Girard)</li>
+                    <li>• M. Lebellego, 2008-11, Univ. Toulouse 3 (co-encadrement E. Lombardi)</li>
+                    <li>• C. Ferreira, 2005-09, INSA Toulouse (co-encadrement J.-M. Roquejoffre)</li>
+                    <li>• Y. Sire, 2002-05, INSA Toulouse (co-encadrement J.-M. Roquejoffre)</li>
+                </ul>
+                
+                <h3 class="font-semibold text-xl text-slate-800 mt-12 mb-4">Encadrement de chercheurs postdoctoraux et ingénieurs</h3>
+                <ul class="space-y-3 mb-12">
+                    <li>• Clémence Turbé, projet SEASONS Système dynamique et segmentation dans l’espace des couleurs pour la neige par Sentinel-1 (co-encadrement F. Karbou), CDD Ingénieur de Recherche, financement APR CNES, Mars 2026 - Février 2027.</li>
+                    <li>• Laurane Charrier, projet Analyse d’images satellitaires pour les lacs de montagne (co-encadrement F. Karbou), financement postdoctoral de la Direction Générale de la Prévention des Risques, Avril 2025 - Mars 2027.</li>
+                    <li>• Karlotta Kilias, projet ONSET Télédétection spatiale des lignes de neige/fonte (co-encadrement F. Karbou), CDD Ingénieur de Recherche, financement CNES, Novembre 2024 - Octobre 2025.</li>
+                    <li>• Abhishek Chatterjee, projet Impacts in granular media with external load (co-encadrement B. Brogliato), bourse postdoctorale Inria, Septembre 2020 - Novembre 2021.</li>
+                    <li>• Kirill Vorotnikov, projet Analysis and simulation of waves and impacts in granular media (co-encadrement B. Brogliato), bourse postdoctorale Inria, Janvier 2017 - Juin 2018.</li>
+                </ul>
+                
+                <h3 class="font-semibold text-xl text-slate-800 mt-12 mb-4">Encadrement de stages de recherche (depuis 2021)</h3>
+                <ul class="space-y-3 mb-12">
+                    <li>• K. Kilias, Meltline/snowline detection in radar and optical satellite images using an adapted Chan-Vese method, Grenoble INP, stage Master 2 MSIAM, 2024. Co-encadrement F. Karbou et C. Turbé - Météo-France/CNRM/CEN.</li>
+                    <li>• L. Breton, Vers un indicateur de lacs de montagne par imagerie SAR de Sentinel-1, ENTPE, stage Master 2, 2023. Co-encadrement F. Karbou - Météo-France /CNRM/CEN, P. Verry - ONF/RTM.</li>
+                    <li>• L. Breton, Algorithme de Chan-Vese appliqué au suivi du manteau neigeux par imagerie SAR de Sentinel-1, stage ENTPE, 2022. Co-encadrement F. Karbou - Météo-France/CNRM/CEN.</li>
+                    <li>• L. Rey, Suivi des lacs de montagne par imagerie SAR de Sentinel-1 : contenu en informations des signaux de rétrodiffusion et ouverture sur une nouvelle méthode de segmentation des lacs, AgroParisTech, stage de Master 2, 2022. Co-encadrement F. Karbou - Météo-France/CNRM/CEN, R. Martin, T. Geay - ONF/RTM.</li>
+                    <li>• A. Guiot, Méthodes d’analyse d’images appliquées aux observations de télédétection spatiale du manteau neigeux, stage de fin d’études, Ecole Nationale de la Météorologie (ENM), 2021. Co-encadrement F. Karbou - Météo-France/CNRM/CEN.</li>
+                </ul>
+                
+                <h3 class="font-semibold text-xl text-slate-800 mt-12 mb-4">Financements recherche, contrats (depuis 2021)</h3>
+                <ul class="space-y-3">
+                    <li>• APR CNES SnoBelt Estimation des lignes de fonte et de neige basée sur l’imagerie spatiale radar et optique (2025-2027). Partenaires : Météo-France - CNRM/Centre d’Études de la Neige (PI F.Karbou), Institut des Géosciences de l’Environnement (IGE), Laboratoire d’Ecologie Alpine (LECA), LJK. Financement LJK 2025 : 11 KEur.</li>
+                    <li>• Projet DANA Détection et suivi des lacs de montagne par imagerie satellite (2024-2028, PI G. James et F. Karbou), financé par la Direction Générale de la Prévention des Risques (DGPR) et mené en collaboration avec le Centre d’Etudes de la Neige (F. Karbou) et l’ONF-RTM (P. Verry, B. Demolis). Financement : 420,6 KEur.</li>
+                    <li>• APR CNES SHARE Séries chronologiques d’images SAR de Sentinel-1 en terrain de montagne (2021-2024). Partenaires : Météo-France - CNRM/Centre d’Études de la Neige (PI F.Karbou), ISTerre, Univ. Savoie, LJK. Financement LJK : 34 KEur.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENSEIGNEMENT -->
+    <section id="enseignement" class="py-20">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <h2 class="section-title text-4xl font-semibold mb-10">Enseignement</h2>
+            <div class="grid md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-7">
+                    <p class="text-lg text-slate-700">J'enseigne les mathématiques depuis une trentaine d’années dans des écoles d’ingénieurs (Ensimag depuis 2008, INSA de Toulouse) et universités (Univ. Grenoble Alpes, Univ. Toulouse 3, Univ. Nice Sophia-Antipolis). Mes enseignements à l'Ensimag incluent :</p>
+                    <ul class="mt-6 space-y-3 text-slate-700">
+                        <li>• Systèmes dynamiques, 2ème année : cours et travaux dirigés</li>
+                        <li>• Bases Mathématiques pour l’Ingénieur (algèbre et analyse), 1ère année : cours et travaux dirigés</li>
+                        <li>• Travaux dirigés d’analyse pour l’ingénieur, 1ère année (2014-17, 2026)</li>
+                        <li>• Projets de Mathématiques Appliquées, 1ère année : analyse d’images satellitaires radar et optiques pour la détection des lacs de montagne, encadrement de 7 projets (28 étudiants) en 2025</li>
+                        <li>• Méthodes Numériques, 1ère année : cours, travaux dirigés et TP (Scilab, Python), 2008-25</li>
+                        <li>• EDP et différences finies, 2ème année : cours, travaux dirigés et TP (2008-11)</li>
+                    </ul>
+                </div>
+                <div class="md:col-span-5">
+                    <img src="assets/image-illustration-enseignement.png" alt="Enseignement" class="rounded-3xl shadow-2xl w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV DÉTAILLÉ -->
+    <section id="cv" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-screen-2xl mx-auto px-8 text-center">
+            <h2 class="text-4xl font-semibold mb-6">CV détaillé</h2>
+            <p class="max-w-md mx-auto mb-10 text-slate-300">Pour consulter l’ensemble complet des informations, téléchargez le CV détaillé.</p>
+            <a href="assets/cv-detaille.pdf" target="_blank" class="inline-flex items-center gap-x-3 bg-emerald-600 hover:bg-emerald-700 px-10 py-5 rounded-3xl text-lg font-semibold transition">
+                <i class="fas fa-file-pdf"></i>
+                Télécharger le CV détaillé (PDF)
+            </a>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-20">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <h2 class="section-title text-4xl font-semibold mb-10">Contact</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <p class="text-lg">Laboratoire Jean Kuntzmann, bâtiment IMAG<br>150 place du Torrent, 38400 Saint-Martin-d’Hères</p>
+                    <div class="mt-8 space-y-6">
+                        <a href="mailto:guillaume.james@univ-grenoble-alpes.fr" class="flex items-center gap-4 text-xl hover:text-emerald-600">
+                            <i class="fas fa-envelope w-6"></i>
+                            guillaume.james@univ-grenoble-alpes.fr
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-inner">
+                    <form action="https://formspree.io/f/xbjlqeqb" method="POST">
+                        <input type="text" name="name" placeholder="Votre nom" required class="w-full mb-4 px-6 py-4 rounded-2xl border focus:outline-none focus:border-slate-400">
+                        <input type="email" name="email" placeholder="Votre email" required class="w-full mb-4 px-6 py-4 rounded-2xl border focus:outline-none focus:border-slate-400">
+                        <textarea name="message" rows="4" placeholder="Votre message" required class="w-full mb-6 px-6 py-4 rounded-2xl border focus:outline-none focus:border-slate-400"></textarea>
+                        <button type="submit" class="bg-slate-900 text-white px-10 py-4 rounded-3xl w-full font-semibold">Envoyer le message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-12">
+        <div class="max-w-screen-2xl mx-auto px-8 text-center text-sm">
+            © 2026 Guillaume JAMES — Tous droits réservés
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('hidden');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('%c✅ Page professionnelle de Guillaume JAMES – Texte parfaitement justifié à gauche (alignement corrigé)', 'color: #0f172a; font-weight: bold;');
+        });
+    </script>
+</body>
+</html>
